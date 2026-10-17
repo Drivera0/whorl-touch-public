@@ -32,6 +32,12 @@ design files themselves are private.
 - The board is a small 4-layer design around an nRF52840 module, with a
   fingerprint sensor above it in a printed nylon housing.
 
+## Architecture
+
+![Whorl Touch architecture: fingerprint sensor, nRF52840, power and the paired computer, with a planned USB dongle](images/architecture.png)
+
+This is the design. None of it has run on real hardware yet.
+
 ## Project status
 
 *Last updated September 2026.*
