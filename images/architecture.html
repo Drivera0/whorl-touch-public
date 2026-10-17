@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whorl Touch: module architecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --color-paper: #2d3142; --color-ink: #f5f5f5; --color-muted: #bfc0c0; }
+    body { font-family: 'Geist', system-ui, sans-serif; background: var(--color-paper); color: var(--color-ink);
+           min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 3rem 1rem; }
+    .frame { max-width: 1200px; width: 100%; }
+    .eyebrow { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.66rem; font-weight: 500;
+               letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.5rem; }
+    h1 { font-family: 'Instrument Serif', serif; font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem); font-weight: 400;
+         letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.5rem; }
+    .scroll { overflow-x: auto; }
+    svg { width: 100%; min-width: 1000px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Architecture · design stage, not yet built</p>
+    <h1>Whorl Touch: module architecture</h1>
+    <div class="scroll">
+<svg viewBox="0 104 1000 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="whorl-touch-architecture-title whorl-touch-architecture-desc">
+<title id="whorl-touch-architecture-title">Whorl Touch: module architecture</title>
+<desc id="whorl-touch-architecture-desc">A fingerprint sensor feeds an nRF52840 that matches the print and proves identity to the paired computer over Bluetooth, with a planned USB dongle path.</desc>
+<defs>
+  <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bfc0c0"/></marker>
+  <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f08a59"/></marker>
+  <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#739fdf"/></marker>
+</defs>
+<rect x="0" y="104" width="1000" height="380" fill="#2d3142"/>
+<!-- Zones -->
+<rect x="224" y="144" width="416" height="240" rx="8" fill="rgba(245,245,245,0.03)" stroke="rgba(245,245,245,0.10)" stroke-width="0.8"/>
+<rect x="394" y="148" width="76" height="12" rx="2" fill="#2d3142"/>
+<text x="432" y="157" fill="#949eb2" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">KNOB MODULE</text>
+<!-- Arrows first (behind boxes) -->
+<line x1="176" y1="208" x2="240" y2="208" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#arrow)"/>
+<line x1="400" y1="208" x2="448" y2="208" stroke="#f08a59" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+<line x1="616" y1="196" x2="760" y2="196" stroke="#739fdf" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+<path d="M 616,220 H 692 Q 700,220 700,228 V 344 Q 700,352 708,352 H 760" fill="none" stroke="#bfc0c0" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+<line x1="848" y1="320" x2="848" y2="240" stroke="#bfc0c0" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+<line x1="532" y1="304" x2="532" y2="240" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#arrow)"/>
+<!-- Arrow labels -->
+<rect x="190" y="190" width="36" height="12" rx="2" fill="#2d3142"/>
+<text x="208" y="199" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">TOUCH</text>
+<rect x="408" y="190" width="32" height="12" rx="2" fill="#2d3142"/>
+<text x="424" y="199" fill="#f08a59" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SCAN</text>
+<rect x="656" y="178" width="64" height="12" rx="2" fill="#2d3142"/>
+<text x="688" y="187" fill="#739fdf" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">BLE · LESC</text>
+<rect x="708" y="274" width="72" height="12" rx="2" fill="#2d3142"/>
+<text x="744" y="283" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">2.4 GHZ ESB</text>
+<rect x="858" y="274" width="28" height="12" rx="2" fill="#2d3142"/>
+<text x="872" y="283" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">USB</text>
+<rect x="488" y="266" width="36" height="12" rx="2" fill="#2d3142"/>
+<text x="506" y="275" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">POWER</text>
+<!-- Node: Your finger -->
+<rect x="40" y="176" width="136" height="64" rx="6" fill="#2d3142"/>
+<rect x="40" y="176" width="136" height="64" rx="6" fill="rgba(191,192,192,0.10)" stroke="#949eb2" stroke-width="1"/>
+<rect x="48" y="184" width="24" height="12" rx="2" fill="transparent" stroke="rgba(142,140,131,0.40)" stroke-width="0.8"/>
+<text x="60" y="193" fill="#949eb2" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">IN</text>
+<text x="108" y="208" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Your finger</text>
+<text x="108" y="224" fill="#bfc0c0" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">one touch</text>
+<!-- Node: Fingerprint sensor -->
+<rect x="240" y="176" width="160" height="64" rx="6" fill="#2d3142"/>
+<rect x="240" y="176" width="160" height="64" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+<rect x="248" y="184" width="28" height="12" rx="2" fill="transparent" stroke="rgba(245,245,245,0.40)" stroke-width="0.8"/>
+<text x="262" y="193" fill="#f5f5f5" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SNS</text>
+<text x="320" y="208" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Fingerprint sensor</text>
+<text x="320" y="224" fill="#bfc0c0" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">HLK-ZW0922</text>
+<!-- Node: nRF52840 -->
+<rect x="448" y="176" width="168" height="64" rx="6" fill="#2d3142"/>
+<rect x="448" y="176" width="168" height="64" rx="6" fill="rgba(240,138,89,0.08)" stroke="#f08a59" stroke-width="1"/>
+<rect x="456" y="184" width="28" height="12" rx="2" fill="transparent" stroke="rgba(240,138,89,0.50)" stroke-width="0.8"/>
+<text x="470" y="193" fill="#f08a59" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">MCU</text>
+<text x="532" y="208" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">nRF52840</text>
+<text x="532" y="224" fill="#bfc0c0" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">Zephyr · match · HMAC</text>
+<!-- Node: Power -->
+<rect x="448" y="304" width="168" height="64" rx="6" fill="#2d3142"/>
+<rect x="448" y="304" width="168" height="64" rx="6" fill="rgba(245,245,245,0.05)" stroke="#bfc0c0" stroke-width="1"/>
+<rect x="456" y="312" width="28" height="12" rx="2" fill="transparent" stroke="rgba(191,192,192,0.50)" stroke-width="0.8"/>
+<text x="470" y="321" fill="#bfc0c0" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">PWR</text>
+<text x="532" y="336" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Power</text>
+<text x="532" y="352" fill="#bfc0c0" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">harvested · LiPol cell</text>
+<!-- Node: Your computer -->
+<rect x="760" y="176" width="176" height="64" rx="6" fill="#2d3142"/>
+<rect x="760" y="176" width="176" height="64" rx="6" fill="rgba(245,245,245,0.03)" stroke="rgba(245,245,245,0.30)" stroke-width="1"/>
+<rect x="768" y="184" width="32" height="12" rx="2" fill="transparent" stroke="rgba(245,245,245,0.22)" stroke-width="0.8"/>
+<text x="784" y="193" fill="#949eb2" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">HOST</text>
+<text x="848" y="208" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Your computer</text>
+<text x="848" y="224" fill="#bfc0c0" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">Mac / Windows helper</text>
+<!-- Node: USB dongle -->
+<rect x="760" y="320" width="176" height="64" rx="6" fill="#2d3142"/>
+<rect x="760" y="320" width="176" height="64" rx="6" fill="rgba(245,245,245,0.02)" stroke="rgba(245,245,245,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="768" y="328" width="32" height="12" rx="2" fill="transparent" stroke="rgba(245,245,245,0.22)" stroke-width="0.8"/>
+<text x="784" y="337" fill="#949eb2" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">NEXT</text>
+<text x="848" y="352" fill="#f5f5f5" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">USB dongle</text>
+<text x="848" y="368" fill="#bfc0c0" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">planned</text>
+<!-- Legend strip -->
+<line x1="40" y1="408" x2="960" y2="408" stroke="rgba(245,245,245,0.10)" stroke-width="0.8"/>
+<text x="40" y="424" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND</text>
+<rect x="40" y="440" width="14" height="10" rx="2" fill="rgba(240,138,89,0.08)" stroke="#f08a59" stroke-width="1"/>
+<text x="60" y="448" fill="#bfc0c0" font-size="8.5" font-family="'Geist', sans-serif">Focal</text>
+<rect x="102" y="440" width="14" height="10" rx="2" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+<text x="122" y="448" fill="#bfc0c0" font-size="8.5" font-family="'Geist', sans-serif">Core service</text>
+<rect x="194" y="440" width="14" height="10" rx="2" fill="rgba(245,245,245,0.05)" stroke="#bfc0c0" stroke-width="1"/>
+<text x="214" y="448" fill="#bfc0c0" font-size="8.5" font-family="'Geist', sans-serif">Store</text>
+<rect x="256" y="440" width="14" height="10" rx="2" fill="rgba(191,192,192,0.10)" stroke="#949eb2" stroke-width="1"/>
+<text x="276" y="448" fill="#bfc0c0" font-size="8.5" font-family="'Geist', sans-serif">User / client</text>
+<rect x="352" y="440" width="14" height="10" rx="2" fill="rgba(245,245,245,0.03)" stroke="rgba(245,245,245,0.30)" stroke-width="1"/>
+<text x="372" y="448" fill="#bfc0c0" font-size="8.5" font-family="'Geist', sans-serif">External service</text>
+<rect x="461" y="440" width="14" height="10" rx="2" fill="rgba(245,245,245,0.02)" stroke="rgba(245,245,245,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="481" y="448" fill="#bfc0c0" font-size="8.5" font-family="'Geist', sans-serif">Optional / planned</text>
+<line x1="578" y1="446" x2="606" y2="446" stroke="#f08a59" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+<text x="614" y="448" fill="#bfc0c0" font-size="8.5" font-family="'Geist', sans-serif">Primary path</text>
+<line x1="686" y1="446" x2="714" y2="446" stroke="#739fdf" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+<text x="722" y="448" fill="#bfc0c0" font-size="8.5" font-family="'Geist', sans-serif">Network / API</text>
+<line x1="798" y1="446" x2="826" y2="446" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="834" y="448" fill="#bfc0c0" font-size="8.5" font-family="'Geist', sans-serif">Data / control</text>
+<line x1="40" y1="466" x2="68" y2="466" stroke="#bfc0c0" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+<text x="76" y="468" fill="#bfc0c0" font-size="8.5" font-family="'Geist', sans-serif">Optional / return</text>
+</svg>
+    </div>
+  </div>
+</body>
+</html>
